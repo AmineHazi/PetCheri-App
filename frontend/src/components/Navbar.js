@@ -16,6 +16,7 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-4">
           <Link to="/login" className="text-white">Connexion</Link>
           <Link to="/register" className="text-white">Inscription</Link>
+          <Link to="/apply" className="text-white">Candidater</Link>
           <Link to="/service-provider" className="text-white">Prestataire</Link>
           <Link to="/calendar" className="text-white">Calendrier</Link>
         </div>
@@ -29,6 +30,7 @@ const Navbar = () => {
         <div className="md:hidden mt-2">
           <Link to="/login" className="block text-white py-2">Connexion</Link>
           <Link to="/register" className="block text-white py-2">Inscription</Link>
+          <Link to="/apply" className="block text-white py-2">Candidater</Link>
           <Link to="/service-provider" className="block text-white py-2">Prestataire</Link>
           <Link to="/calendar" className="block text-white py-2">Calendrier</Link>
         </div>
