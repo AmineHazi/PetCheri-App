@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const Application = sequelize.define('Application', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -7,32 +7,23 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
-    password: {
+    token: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: 'pending'
     },
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     phone_number: DataTypes.STRING,
     address: DataTypes.TEXT,
     profile_description: DataTypes.TEXT,
-    accept_cgv: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
-    },
-    sign_contract: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    }
+    accept_cgv: DataTypes.BOOLEAN,
+    sign_contract: DataTypes.BOOLEAN
   });
-  return User;
+  return Application;
 };
