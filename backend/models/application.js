@@ -1,29 +1,39 @@
-module.exports = (sequelize, DataTypes) => {
-  const Application = sequelize.define('Application', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    token: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    status: {
-      type: DataTypes.STRING,
-      defaultValue: 'pending'
-    },
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    phone_number: DataTypes.STRING,
-    address: DataTypes.TEXT,
-    profile_description: DataTypes.TEXT,
-    accept_cgv: DataTypes.BOOLEAN,
-    sign_contract: DataTypes.BOOLEAN
-  });
-  return Application;
-};
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db'); // Adjust the path as necessary
+
+const Application = sequelize.define('Application', {
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  token: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  first_name: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  last_name: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  phone_number: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  profile_description: {
+    type: DataTypes.TEXT,
+    allowNull: true
+  }
+});
+
+module.exports = Application;

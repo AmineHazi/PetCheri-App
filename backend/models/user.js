@@ -1,38 +1,40 @@
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    phone_number: DataTypes.STRING,
-    address: DataTypes.TEXT,
-    profile_description: DataTypes.TEXT,
-    accept_cgv: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
-    },
-    sign_contract: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    }
-  });
-  return User;
-};
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db'); // Adjust the path as necessary
+
+const User = sequelize.define('User', {
+  first_name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  last_name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  phone_number: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  profile_description: {
+    type: DataTypes.TEXT,
+    allowNull: true
+  },
+  profile_picture: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  is_admin: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  }
+});
+
+module.exports = User;
