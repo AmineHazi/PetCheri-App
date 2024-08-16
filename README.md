@@ -341,27 +341,27 @@ app.listen(PORT, () => {
 });
 ```
 
-# API Routes Documentation
+# Documentation des Routes API
 
 ## Routes
 
-The routes define the API entry points to interact with the different entities of the application (e.g., Admins, Service Providers, Clients, Services, Applications).
+Les routes définissent les points d'entrée de l'API pour interagir avec les différentes entités de l'application (e.g., Admins, Prestataires de services, Clients, Services, Applications).
 
-### Route for Application Registration
+### Route d'inscription des applications
 
-- **Description**: This route handles the submission of service provider registration applications. A unique token is generated for each application.
-- **Endpoint**: `/api/applications`
-- **Method**: POST
-- **Parameters**:
-  - `email` (string): Candidate's email
-  - `first_name` (string): Candidate's first name
-  - `last_name` (string): Candidate's last name
-  - `phone_number` (string): Candidate's phone number
-  - `address` (string): Candidate's address
-  - `profile_description` (string): Candidate's profile description
-- **Response**: The details of the created application and the sending of the invitation email.
+- **Description** : Cette route gère la soumission des demandes d'inscription des prestataires de services. Un jeton unique est généré pour chaque demande.
+- **Endpoint** : `/api/applications`
+- **Méthode** : POST
+- **Paramètres** :
+  - `email` (string) : Email du candidat
+  - `first_name` (string) : Prénom du candidat
+  - `last_name` (string) : Nom de famille du candidat
+  - `phone_number` (string) : Numéro de téléphone du candidat
+  - `address` (string) : Adresse du candidat
+  - `profile_description` (string) : Description du profil du candidat
+- **Réponse** : Les détails de la demande créée et l'envoi de l'email d'invitation.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -372,20 +372,20 @@ Example response:
   "last_name": "Doe",
   "phone_number": "1234567890",
   "address": "123 Street, City",
-  "profile_description": "Experienced pet sitter."
+  "profile_description": "Expérience de garde d'animaux."
 }
 ```
 
-### Route to Retrieve Applications by Token
+### Route de récupération des applications par jeton
 
-- **Description**: This route retrieves the information of a registration application using the provided unique token.
-- **Endpoint**: `/api/applications/:token`
-- **Method**: GET
-- **Parameters**:
-  - `token` (string): Unique application token
-- **Response**: The details of the application.
+- **Description** : Cette route récupère les informations d'une demande d'inscription à partir du jeton unique fourni.
+- **Endpoint** : `/api/applications/:token`
+- **Méthode** : GET
+- **Paramètres** :
+  - `token` (string) : Jeton unique de la demande
+- **Réponse** : Les détails de la demande.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -396,23 +396,23 @@ Example response:
   "last_name": "Doe",
   "phone_number": "1234567890",
   "address": "123 Street, City",
-  "profile_description": "Experienced pet sitter."
+  "profile_description": "Expérience de garde d'animaux."
 }
 ```
 
-### Route to Complete Registration
+### Route de finalisation de l'inscription
 
-- **Description**: This route allows candidates to complete their registration by providing a password and accepting the CGV and contract.
-- **Endpoint**: `/api/complete-registration/:token`
-- **Method**: POST
-- **Parameters**:
-  - `token` (string): Unique application token
-  - `password` (string): User's chosen password
-  - `acceptCGV` (boolean): Acceptance of CGV
-  - `signContract` (boolean): Contract signature
-- **Response**: User creation, updating the application status, and JWT generation.
+- **Description** : Cette route permet aux candidats de compléter leur inscription en fournissant un mot de passe et en acceptant les CGV et le contrat.
+- **Endpoint** : `/api/complete-registration/:token`
+- **Méthode** : POST
+- **Paramètres** :
+  - `token` (string) : Jeton unique de la demande
+  - `password` (string) : Mot de passe choisi par l'utilisateur
+  - `acceptCGV` (boolean) : Acceptation des CGV
+  - `signContract` (boolean) : Signature du contrat
+- **Réponse** : Création de l'utilisateur, mise à jour de l'état de la demande et génération d'un jeton JWT.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "userId": 1,
@@ -420,33 +420,33 @@ Example response:
 }
 ```
 
-### Route for Login
+### Route de connexion
 
-- **Description**: This route handles user authentication by verifying their email and password.
-- **Endpoint**: `/api/login`
-- **Method**: POST
-- **Parameters**:
-  - `email` (string): User's email
-  - `password` (string): User's password
-- **Response**: JWT if authentication is successful.
+- **Description** : Cette route gère l'authentification des utilisateurs en vérifiant leur email et mot de passe.
+- **Endpoint** : `/api/login`
+- **Méthode** : POST
+- **Paramètres** :
+  - `email` (string) : Email de l'utilisateur
+  - `password` (string) : Mot de passe de l'utilisateur
+- **Réponse** : Jeton JWT si l'authentification réussie.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "token": "jwt-token"
 }
 ```
 
-### Route to Retrieve User Profile
+### Route de récupération du profil utilisateur
 
-- **Description**: This route allows retrieving the authenticated user's profile information.
-- **Endpoint**: `/api/profile`
-- **Method**: GET
-- **Parameters**:
-  - `Authorization` (header): JWT
-- **Response**: User profile information.
+- **Description** : Cette route permet de récupérer les informations du profil de l'utilisateur authentifié.
+- **Endpoint** : `/api/profile`
+- **Méthode** : GET
+- **Paramètres** :
+  - `Authorization` (header) : Jeton JWT
+- **Réponse** : Informations du profil utilisateur.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "first_name": "John",
@@ -454,22 +454,22 @@ Example response:
 }
 ```
 
-### Route to Update User Profile
+### Route de mise à jour du profil utilisateur
 
-- **Description**: This route allows updating the authenticated user's profile information.
-- **Endpoint**: `/api/profile`
-- **Method**: PUT
-- **Parameters**:
-  - `first_name` (string): User's first name
-  - `last_name` (string): User's last name
-  - `email` (string): User's email
-  - `phone_number` (string): User's phone number
-  - `address` (string): User's address
-  - `profile_description` (string): User's profile description
-  - `profile_picture` (string): URL of the user's profile picture
-- **Response**: Updated user profile details.
+- **Description** : Cette route permet de mettre à jour les informations du profil de l'utilisateur authentifié.
+- **Endpoint** : `/api/profile`
+- **Méthode** : PUT
+- **Paramètres** :
+  - `first_name` (string) : Prénom de l'utilisateur
+  - `last_name` (string) : Nom de famille de l'utilisateur
+  - `email` (string) : Email de l'utilisateur
+  - `phone_number` (string) : Numéro de téléphone de l'utilisateur
+  - `address` (string) : Adresse de l'utilisateur
+  - `profile_description` (string) : Description du profil de l'utilisateur
+  - `profile_picture` (string) : URL de la photo de profil de l'utilisateur
+- **Réponse** : Les détails mis à jour du profil utilisateur.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -478,35 +478,35 @@ Example response:
   "email": "example@example.com",
   "phone_number": "1234567890",
   "address": "123 Street, City",
-  "profile_description": "Experienced pet sitter.",
+  "profile_description": "Expérience de garde d'animaux.",
   "profile_picture": "http://example.com/profile.jpg"
 }
 ```
 
-### Route to Send Messages to Slack
+### Route d'envoi de messages à Slack
 
-- **Description**: This route sends a message to a specified Slack channel.
-- **Endpoint**: `/send-to-slack`
-- **Method**: POST
-- **Parameters**:
-  - `message` (string): Message to be sent
-- **Response**: Confirmation of message sent.
+- **Description** : Cette route envoie un message à un canal Slack spécifié.
+- **Endpoint** : `/send-to-slack`
+- **Méthode** : POST
+- **Paramètres** :
+  - `message` (string) : Message à envoyer
+- **Réponse** : Confirmation de l'envoi du message.
 
-Example response:
+Exemple de réponse :
 ```json
 {
-  "status": "Message sent to Slack"
+  "status": "Message envoyé à Slack"
 }
 ```
 
-### Route to Retrieve All Applications
+### Route de récupération de toutes les demandes d'inscription
 
-- **Description**: This route retrieves all registration applications.
-- **Endpoint**: `/api/applications`
-- **Method**: GET
-- **Response**: List of registration applications.
+- **Description** : Cette route récupère toutes les demandes d'inscription.
+- **Endpoint** : `/api/applications`
+- **Méthode** : GET
+- **Réponse** : Liste des demandes d'inscription.
 
-Example response:
+Exemple de réponse :
 ```json
 [
   {
@@ -518,7 +518,7 @@ Example response:
     "last_name": "Doe",
     "phone_number": "1234567890",
     "address": "123 Street, City",
-    "profile_description": "Experienced pet sitter."
+    "profile_description": "Expérience de garde d'animaux."
   },
   {
     "id": 2,
@@ -529,19 +529,19 @@ Example response:
     "last_name": "Smith",
     "phone_number": "0987654321",
     "address": "456 Avenue, City",
-    "profile_description": "Professional dog walker."
+    "profile_description": "Promeneuse de chien professionnelle."
   }
 ]
 ```
 
-### Route to Retrieve All Service Providers
+### Route de récupération de tous les prestataires de services
 
-- **Description**: This route retrieves all registered service providers.
-- **Endpoint**: `/api/service-providers`
-- **Method**: GET
-- **Response**: List of service providers.
+- **Description** : Cette route récupère tous les prestataires de services enregistrés.
+- **Endpoint** : `/api/service-providers`
+- **Méthode** : GET
+- **Réponse** : Liste des prestataires de services.
 
-Example response:
+Exemple de réponse :
 ```json
 [
   {
@@ -551,7 +551,7 @@ Example response:
     "email": "example@example.com",
     "phone_number": "1234567890",
     "address": "123 Street, City",
-    "profile_description": "Experienced pet sitter.",
+    "profile_description": "Expérience de garde d'animaux.",
     "profile_picture": "http://example.com/profile.jpg",
     "services": [
       "Garde de chien chez le client",
@@ -560,7 +560,7 @@ Example response:
     "availabilities": [
       {
         "service_type": "Garde de chien chez le client",
-        "day": "Monday",
+        "day": "Lundi",
         "start_time": "09:00",
         "end_time": "12:00",
         "max_animals": 2
@@ -570,24 +570,26 @@ Example response:
 ]
 ```
 
-### Route to Create a Service Provider
+### Route de création d'un prestataire de services
 
-- **Description**: This route allows the creation of a new service provider.
-- **Endpoint**: `/api/service-providers`
-- **Method**: POST
-- **Parameters**:
-  - `first_name` (string): Service provider's first name
-  - `last_name` (string): Service provider's last name
-  - `email` (string): Service provider's email
-  - `phone_number` (string): Service provider's phone number
-  - `address` (string): Service provider's address
-  - `profile_description` (string): Service provider's profile description
-  - `profile_picture` (string): URL of the service provider's profile picture
-  - `services` (array): List of services offered by the provider
-  - `availabilities` (array): List of the provider's availabilities
-- **Response**: Details of the created service provider.
+- **Description** : Cette route permet de créer un nouveau prestataire de services.
+- **Endpoint** : `/api/service-providers`
+- **Méthode** : POST
+- **Paramètres** :
+  - `first_name` (string) : Prénom du prestataire de services
+  - `last_name` (string) : Nom de famille du prestataire de services
+  - `email` (string) : Email du prestataire de services
+  - `phone_number` (string) : Numéro de téléphone du prestataire de services
+  - `address` (string) : Adresse du prestataire de services
+  - `profile_description` (string) : Description du profil du prestataire de services
+  - `profile_picture` (string) : URL de la photo de profil du prestataire de services
+  - `services` (array) : Liste des services offerts par le prestataire
+  - `availabilities` (array) : Liste des disponibilités du prestataire
+- **Réponse** : Détails du prestataire de
 
-Example response:
+ services créé.
+
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -596,7 +598,7 @@ Example response:
   "email": "example@example.com",
   "phone_number": "1234567890",
   "address": "123 Street, City",
-  "profile_description": "Experienced pet sitter.",
+  "profile_description": "Expérience de garde d'animaux.",
   "profile_picture": "http://example.com/profile.jpg",
   "services": [
     "Garde de chien chez le client",
@@ -605,7 +607,7 @@ Example response:
   "availabilities": [
     {
       "service_type": "Garde de chien chez le client",
-      "day": "Monday",
+      "day": "Lundi",
       "start_time": "09:00",
       "end_time": "12:00",
       "max_animals": 2
@@ -614,26 +616,24 @@ Example response:
 }
 ```
 
-### Route to Update a Service Provider
+### Route de mise à jour d'un prestataire de services
 
-- **Description**: This route allows updating an existing service provider's information.
-- **Endpoint**: `/api/service-providers/:id`
-- **Method**: PUT
-- **Parameters**:
-  - `first_name` (string): Service provider's first name
-  - `last_name` (string): Service provider's last name
-  - `email` (string): Service provider's email
-  - `phone_number` (string): Service provider's phone number
-  - `address
+- **Description** : Cette route permet de mettre à jour les informations d'un prestataire de services existant.
+- **Endpoint** : `/api/service-providers/:id`
+- **Méthode** : PUT
+- **Paramètres** :
+  - `first_name` (string) : Prénom du prestataire de services
+  - `last_name` (string) : Nom de famille du prestataire de services
+  - `email` (string) : Email du prestataire de services
+  - `phone_number` (string) : Numéro de téléphone du prestataire de services
+  - `address` (string) : Adresse du prestataire de services
+  - `profile_description` (string) : Description du profil du prestataire de services
+  - `profile_picture` (string) : URL de la photo de profil du prestataire de services
+  - `services` (array) : Liste des services offerts par le prestataire
+  - `availabilities` (array) : Liste des disponibilités du prestataire
+- **Réponse** : Détails mis à jour du prestataire de services.
 
-` (string): Service provider's address
-  - `profile_description` (string): Service provider's profile description
-  - `profile_picture` (string): URL of the service provider's profile picture
-  - `services` (array): List of services offered by the provider
-  - `availabilities` (array): List of the provider's availabilities
-- **Response**: Updated service provider details.
-
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -642,7 +642,7 @@ Example response:
   "email": "example@example.com",
   "phone_number": "1234567890",
   "address": "123 Street, City",
-  "profile_description": "Experienced pet sitter.",
+  "profile_description": "Expérience de garde d'animaux.",
   "profile_picture": "http://example.com/profile.jpg",
   "services": [
     "Garde de chien chez le client",
@@ -651,7 +651,7 @@ Example response:
   "availabilities": [
     {
       "service_type": "Garde de chien chez le client",
-      "day": "Monday",
+      "day": "Lundi",
       "start_time": "09:00",
       "end_time": "12:00",
       "max_animals": 2
@@ -660,28 +660,28 @@ Example response:
 }
 ```
 
-### Route to Delete a Service Provider
+### Route de suppression d'un prestataire de services
 
-- **Description**: This route allows the deletion of an existing service provider.
-- **Endpoint**: `/api/service-providers/:id`
-- **Method**: DELETE
-- **Response**: Deletion confirmation.
+- **Description** : Cette route permet de supprimer un prestataire de services existant.
+- **Endpoint** : `/api/service-providers/:id`
+- **Méthode** : DELETE
+- **Réponse** : Confirmation de la suppression.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "status": "ServiceProvider deleted"
 }
 ```
 
-### Route to Retrieve All Clients
+### Route de récupération de tous les clients
 
-- **Description**: This route retrieves all registered clients.
-- **Endpoint**: `/api/clients`
-- **Method**: GET
-- **Response**: List of clients.
+- **Description** : Cette route récupère tous les clients enregistrés.
+- **Endpoint** : `/api/clients`
+- **Méthode** : GET
+- **Réponse** : Liste des clients.
 
-Example response:
+Exemple de réponse :
 ```json
 [
   {
@@ -703,20 +703,20 @@ Example response:
 ]
 ```
 
-### Route to Create a Client
+### Route de création d'un client
 
-- **Description**: This route allows the creation of a new client.
-- **Endpoint**: `/api/clients`
-- **Method**: POST
-- **Parameters**:
-  - `first_name` (string): Client's first name
-  - `last_name` (string): Client's last name
-  - `email` (string): Client's email
-  - `phone_number` (string): Client's phone number
-  - `address` (string): Client's address
-- **Response**: Details of the created client.
+- **Description** : Cette route permet de créer un nouveau client.
+- **Endpoint** : `/api/clients`
+- **Méthode** : POST
+- **Paramètres** :
+  - `first_name` (string) : Prénom du client
+  - `last_name` (string) : Nom de famille du client
+  - `email` (string) : Email du client
+  - `phone_number` (string) : Numéro de téléphone du client
+  - `address` (string) : Adresse du client
+- **Réponse** : Détails du client créé.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -728,20 +728,20 @@ Example response:
 }
 ```
 
-### Route to Update a Client
+### Route de mise à jour d'un client
 
-- **Description**: This route allows updating an existing client's information.
-- **Endpoint**: `/api/clients/:id`
-- **Method**: PUT
-- **Parameters**:
-  - `first_name` (string): Client's first name
-  - `last_name` (string): Client's last name
-  - `email` (string): Client's email
-  - `phone_number` (string): Client's phone number
-  - `address` (string): Client's address
-- **Response**: Updated client details.
+- **Description** : Cette route permet de mettre à jour les informations d'un client existant.
+- **Endpoint** : `/api/clients/:id`
+- **Méthode** : PUT
+- **Paramètres** :
+  - `first_name` (string) : Prénom du client
+  - `last_name` (string) : Nom de famille du client
+  - `email` (string) : Email du client
+  - `phone_number` (string) : Numéro de téléphone du client
+  - `address` (string) : Adresse du client
+- **Réponse** : Détails mis à jour du client.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -753,28 +753,28 @@ Example response:
 }
 ```
 
-### Route to Delete a Client
+### Route de suppression d'un client
 
-- **Description**: This route allows the deletion of an existing client.
-- **Endpoint**: `/api/clients/:id`
-- **Method**: DELETE
-- **Response**: Deletion confirmation.
+- **Description** : Cette route permet de supprimer un client existant.
+- **Endpoint** : `/api/clients/:id`
+- **Méthode** : DELETE
+- **Réponse** : Confirmation de la suppression.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "status": "Client deleted"
 }
 ```
 
-### Route to Retrieve All Services
+### Route de récupération de tous les services
 
-- **Description**: This route retrieves all registered services.
-- **Endpoint**: `/api/services`
-- **Method**: GET
-- **Response**: List of services.
+- **Description** : Cette route récupère tous les services enregistrés.
+- **Endpoint** : `/api/services`
+- **Méthode** : GET
+- **Réponse** : Liste des services.
 
-Example response:
+Exemple de réponse :
 ```json
 [
   {
@@ -800,22 +800,22 @@ Example response:
 ]
 ```
 
-### Route to Create a Service
+### Route de création d'un service
 
-- **Description**: This route allows the creation of a new service.
-- **Endpoint**: `/api/services`
-- **Method**: POST
-- **Parameters**:
-  - `service_type` (string): Type of service
-  - `start_date` (date): Start date of the service
-  - `end_date` (date): End date of the service
-  - `duration` (integer): Duration of the service in minutes
-  - `service_provider_id` (integer): ID of the service provider
-  - `client_id` (integer): ID of the client
-  - `animal_count` (integer): Number of animals involved in the service
-- **Response**: Details of the created service.
+- **Description** : Cette route permet de créer un nouveau service.
+- **Endpoint** : `/api/services`
+- **Méthode** : POST
+- **Paramètres** :
+  - `service_type` (string) : Type de service
+  - `start_date` (date) : Date de début du service
+  - `end_date` (date) : Date de fin du service
+  - `duration` (integer) : Durée du service en minutes
+  - `service_provider_id` (integer) : ID du prestataire de services
+  - `client_id` (integer) : ID du client
+  - `animal_count` (integer) : Nombre d'animaux concernés par le service
+- **Réponse** : Détails du service créé.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -829,22 +829,24 @@ Example response:
 }
 ```
 
-### Route to Update a Service
+### Route de mise à jour d'un service
 
-- **Description**: This route allows updating an existing service's information.
-- **Endpoint**: `/api/services/:id`
-- **Method**: PUT
-- **Parameters**:
-  - `service_type` (string): Type of service
-  - `start_date` (date): Start date of the service
-  - `end_date` (date): End date of the service
-  - `duration` (integer): Duration of the service in minutes
-  - `service_provider_id` (integer): ID of the service provider
-  - `client_id` (integer): ID of the client
-  - `animal_count` (integer): Number of animals involved in the service
-- **Response**: Updated service details.
+- **Description** : Cette route permet de mettre à jour les informations d'un service existant.
+- **Endpoint** : `/api/services/:id`
+- **Méthode** : PUT
+- **Paramètres** :
+  - `service_type` (string) : Type de service
+  - `start_date` (date) : Date de début du service
+  - `end_date` (date) : Date de fin du service
+  - `duration` (integer) : Durée du service en minutes
+  - `service_provider_id` (integer) : ID du prestataire de services
+  - `client_id` (integer) : ID du client
+  - `
 
-Example response:
+animal_count` (integer) : Nombre d'animaux concernés par le service
+- **Réponse** : Détails mis à jour du service.
+
+Exemple de réponse :
 ```json
 {
   "id": 1,
@@ -858,35 +860,35 @@ Example response:
 }
 ```
 
-### Route to Delete a Service
+### Route de suppression d'un service
 
-- **Description**: This route allows the deletion of an existing service.
-- **Endpoint**: `/api/services/:id`
-- **Method**: DELETE
-- **Response**: Deletion confirmation.
+- **Description** : Cette route permet de supprimer un service existant.
+- **Endpoint** : `/api/services/:id`
+- **Méthode** : DELETE
+- **Réponse** : Confirmation de la suppression.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "status": "Service deleted"
 }
 ```
 
-### Route to Retrieve All Availabilities
+### Route de récupération de toutes les disponibilités
 
-- **Description**: This route retrieves all availabilities of service providers.
-- **Endpoint**: `/api/availabilities`
-- **Method**: GET
-- **Response**: List of availabilities.
+- **Description** : Cette route récupère toutes les disponibilités des prestataires de services.
+- **Endpoint** : `/api/availabilities`
+- **Méthode** : GET
+- **Réponse** : Liste des disponibilités.
 
-Example response:
+Exemple de réponse :
 ```json
 [
   {
     "id": 1,
     "service_provider_id": 1,
     "service_type": "Garde de chien chez le client",
-    "day": "Monday",
+    "day": "Lundi",
     "start_time": "09:00",
     "end_time": "12:00",
     "max_animals": 2
@@ -895,7 +897,7 @@ Example response:
     "id": 2,
     "service_provider_id": 2,
     "service_type": "Promenade de chien en ville",
-    "day": "Tuesday",
+    "day": "Mardi",
     "start_time": "14:00",
     "end_time": "17:00",
     "max_animals": 3
@@ -903,70 +905,68 @@ Example response:
 ]
 ```
 
-### Route to Create Availability
+### Route de création d'une disponibilité
 
-- **Description**: This route allows the creation of a new availability for a service provider.
-- **Endpoint**: `/api/availabilities`
-- **Method**: POST
-- **Parameters**:
-  - `service_provider_id` (integer): ID of the service provider
-  - `service_type` (string):
+- **Description** : Cette route permet de créer une nouvelle disponibilité pour un prestataire de services.
+- **Endpoint** : `/api/availabilities`
+- **Méthode** : POST
+- **Paramètres** :
+  - `service_provider_id` (integer) : ID du prestataire de services
+  - `service_type` (string) : Type de service
+  - `day` (string) : Jour de la semaine
+  - `start_time` (time) : Heure de début
+  - `end_time` (time) : Heure de fin
+  - `max_animals` (integer) : Nombre maximum d'animaux
+- **Réponse** : Détails de la disponibilité créée.
 
- Type of service
-  - `day` (string): Day of the week
-  - `start_time` (time): Start time
-  - `end_time` (time): End time
-  - `max_animals` (integer): Maximum number of animals
-- **Response**: Details of the created availability.
-
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
   "service_provider_id": 1,
   "service_type": "Garde de chien chez le client",
-  "day": "Monday",
+  "day": "Lundi",
   "start_time": "09:00",
   "end_time": "12:00",
   "max_animals": 2
 }
 ```
 
-### Route to Update Availability
+### Route de mise à jour d'une disponibilité
 
-- **Description**: This route allows updating an existing availability's information.
-- **Endpoint**: `/api/availabilities/:id`
-- **Method**: PUT
-- **Parameters**:
-  - `service_provider_id` (integer): ID of the service provider
-  - `service_type` (string): Type of service
-  - `day` (string): Day of the week
-  - `start_time` (time): Start time
-  - `end_time` (time): End time
-  - `max_animals` (integer): Maximum number of animals
-- **Response**: Updated availability details.
+- **Description** : Cette route permet de mettre à jour les informations d'une disponibilité existante.
+- **Endpoint** : `/api/availabilities/:id`
+- **Méthode** : PUT
+- **Paramètres** :
+  - `service_provider_id` (integer) : ID du prestataire de services
+  - `service_type` (string) : Type de service
+  - `day` (string) : Jour de la semaine
+  - `start_time` (time) : Heure de début
+  - `end_time` (time) : Heure de fin
+  - `max_animals` (integer) : Nombre maximum d'animaux
+- **Réponse** : Détails mis à jour de la disponibilité.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "id": 1,
   "service_provider_id": 1,
   "service_type": "Garde de chien chez le client",
-  "day": "Monday",
+  "day": "Lundi",
   "start_time": "09:00",
   "end_time": "12:00",
   "max_animals": 2
 }
 ```
 
-### Route to Delete Availability
+### Route de suppression d'une disponibilité
 
-- **Description**: This route allows the deletion of an existing availability.
-- **Endpoint**: `/api/availabilities/:id`
-- **Method**: DELETE
-- **Response**: Deletion confirmation.
+- **Description** : Cette route permet de supprimer une disponibilité existante.
+- **Endpoint** : `/api/availabilities/:id`
+- **Méthode** : DELETE
+- **Réponse** : Confirmation de la suppression.
 
-Example response:
+Exemple de réponse :
 ```json
 {
   "status": "Availability deleted"
